@@ -15,6 +15,7 @@ var page = {
   },
 
   initStyling: function() {
+
     page.loadItems();
     page.allItems();
     page.itemsLeft();
@@ -23,14 +24,14 @@ var page = {
 
   initEvents: function() {
 
-    $('submit').on('click', page.addItem)
-    $('.footer a').on('click', page.navPages)
-    $('input[type=checkbox]').on('click', page.checked)
+    $('form').on('submit',  page.addItem);
+    $('.footer a').on('click' ,page.navPages);
+    $('input[type=checkbox]').on('click', page.checked);
   },
 
 
-  addOneItemToDOM: function (post) {
-    page.loadTemplate("item", post, $('.notDone'));
+  addOneItemToDOM: function (item) {
+    page.loadTemplate("item", item, $('.not-done'));
   },
 
   addAllItemsToDOM: function (itemCollection) {
@@ -46,7 +47,8 @@ var page = {
         ///need to add here
         console.log("success");
         console.log(data);
-        page.addAllItemsToDOM
+        page.addAllItemsToDOM(data);
+
       },
       error: function (err) {
 
@@ -54,7 +56,7 @@ var page = {
     });
   },
 
-  createItem: function (post) {
+  createItem: function (newItem) {
 
     $.ajax({
       url: page.url,
@@ -62,7 +64,7 @@ var page = {
       data: newItem,
       success: function (data) {
 
-        page.addOneitemToDOM(data);
+        page.addOneItemToDOM(data);
         console.log("success!!: ", data);
       },
       error: function (err) {
@@ -84,7 +86,6 @@ var page = {
 
     $('input[class="window"]').val("")
 
-    page.loadItems
   },
 
   navPages: function (event) {
@@ -99,14 +100,13 @@ var page = {
 
   allItems: function(event) {
     // event.preventDefault();
-  var ndAll = $('.notDone').clone();
-  var cpltdAll = $('.completed').clone();
-
-  var ndAllArr = $(ndAll).toArray();
+  var ndAll = $('.not-done').children().clone();
+  var cpltdAll = $('.completed').children().clone();
 
 
-  $(ndAllArr).append('.all');
-  $(cpltdAll).append('.all');
+
+  $('.all').append(ndAll);
+  $('.all').append(cpltdAll);
 
   console.log(ndAll);
   console.log(cpltdAll);
@@ -115,9 +115,9 @@ var page = {
 },
 
 itemsLeft: function() {
-  var leftArr = $('.notDone').find('li');
-  var $num = leftArr.length;
-  var preNum = $('#left-link').prepend($num + " ") + " ";
+  var leftArr = $('.not-done').find('li');
+  var num = leftArr.length;
+  var leftNum = $('#left-link').prepend(num + " ");
 },
 
 /////setTimeout on this?//////////
@@ -141,6 +141,7 @@ itemsLeft: function() {
 
   loadTemplate: function (tmplName, data, $target){
     var compiledTmpl = _.template(page.getTemplate(tmplName));
+
     $target.append(compiledTmpl(data));
   },
 

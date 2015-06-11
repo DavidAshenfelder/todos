@@ -20,8 +20,10 @@ var templates = {}
 
 templates.item = [
   "<li class='line-item' data-id= '<%= _id%>'>",
-    "< input type= 'checkbox' >",
-    "<p> '<%=item%>' </p>",
-    "<button type='button' name='delete'>Delete</button>",
+    "<input type='checkbox'>",
+    "<p><%=item%></p>",
+    "<div class='delete-wrapper'>",
+      "<button type='button' name='delete'>Delete</button>",
+    "</div>",
   "</li>"
 ].join("");
