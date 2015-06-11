@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>todos</title>
+  <link rel="stylesheet" href="bower_components/octicons/octicons/octicons.css">
+  <link rel="stylesheet" href="main.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <section class="all-items" rel="all-items">
+
+  </section>
+  <secion class="active">
+
+  </secion>
+  <section class="completed-items" rel=".completed-itmes">
+
+  </section>
+
+  <section class="list-wrapper">
+    <h1 class="title">todos</h1>
+    <div class="inner-list-wrapper">
+      <div class="list">
+        <div class="input-wrapper">
+
+          <div class="type-list">
+            <div class="drop-down">
+              <ul>
+                <li class="nav-pages"> <a href="">All</a></li>
+                <li class="nav-pages"> <a href="">Active</a></li>
+                <li class="nav-pages"> <a href="">Completed</a></li>
+              </ul>
+            </div>
+            <div class="down-button"><span class="mega-octicon octicon-chevron-down"></span></div>
+              <input class="window" type="text" placeholder="What needs to be done?">
+              <div class="submit-wrapper">
+                <button class="submit" type="button" name="submit">Submit</button>
+              </div>
+          </div>
+        </div>
+        <div class="item-wrapper">
+          <ul class="all">
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Make an Appointment
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+          </ul>
+          <ul class="notDone">
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Make an Appointment
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Perform crud
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Understand GET POST PUT DELETE
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Begin $.ajax()
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+          </ul>
+          <ul class="completed completedFont">
+            <li class="line-item">
+              <input type="checkbox" name="circle">
+              <p>
+                Make an Appointment
+              </p>
+              <div class="delete-wrapper">
+                <button type="button" name="delete">Delete</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer">
+          <ul>
+            <li id="left-link" class="footer-links">Items left</li>
+            <li class="footer-links"><a href="" rel=".all">All</a></li>
+            <li class="footer-links"><a href="" rel=".notDone">Active</a></li>
+            <li class="footer-links"><a href="" rel=".completed">Completed</a></li>
+            <li id="right-link" class="footer-links"><a href="">Clear Completed</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+  <script src="data.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
