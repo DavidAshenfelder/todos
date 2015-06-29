@@ -17,21 +17,43 @@ var page = {
   initStyling: function() {
 
     page.loadItems();
-    page.allItems();
-    page.itemsLeft();
+
+
 
   },
 
   initEvents: function() {
 
+    $('body').on('click', '#all', function(event){
+      event.preventDefault();
+    page.allItems()
+    });
+
+
     $('form').on('submit',  page.addItem);
     $('.footer a').on('click' ,page.navPages);
-    $('input[type=checkbox]').on('click', page.checked);
+    $('body').on('click', '.check', function(event) {
+      event.preventDefault();
+      var done = $(this).closest('li');
+      var doner = $(done).find('.octicon').remove();
+      var donerest = $(done).find('button').remove();
+      $(done).appendTo('#completedList');
+      console.log(done);
+      page.itemsLeft();
+    });
+
+    $('.not-done').on('click', 'button[name="delete"]', function(event) {
+      event.preventDefault();
+      var deleteId = $(this).closest('.line-item').data('id');
+      console.log(deleteId);
+      page.deleteOneToDo(deleteId);
+
+    })
+
   },
 
-
   addOneItemToDOM: function (item) {
-    page.loadTemplate("item", item, $('.not-done'));
+    page.loadTemplate("item", item, $('#notDoneList'));
   },
 
   addAllItemsToDOM: function (itemCollection) {
@@ -44,11 +66,10 @@ var page = {
       url: page.url,
       method: 'GET',
       success: function (data) {
-        ///need to add here
         console.log("success");
-        console.log(data);
+        $('#notDoneList').html('');
         page.addAllItemsToDOM(data);
-
+        page.itemsLeft();
       },
       error: function (err) {
 
@@ -63,7 +84,6 @@ var page = {
       method: 'POST',
       data: newItem,
       success: function (data) {
-
         page.addOneItemToDOM(data);
         console.log("success!!: ", data);
       },
@@ -74,17 +94,31 @@ var page = {
     })
   },
 
-  addItem: function(event) {
-    event.preventDefault
+  deleteOneToDo: function (deleteId) {
 
-    var newItem = {item: $('input[class="window"]').val()
+    console.log(deleteId);
+    $.ajax({
+      url: page.url + "/" + deleteId ,
+      method: 'DELETE',
+      success: function (data) {
+        $('#notDoneList').html("");
+        page.loadItems();
+      }
+    });
+  },
+
+  addItem: function (event) {
+    event.preventDefault();
+
+    var newItem = {
+      item: $('input[class="window"]').val(),
+      // type: $('input[class="window"]').('').attr(''),
+      list: $('.list-wrapper h1').text()
   }
 
-    // $('.notDone').append(newItem);
-
     page.createItem(newItem);
-
     $('input[class="window"]').val("")
+    page.loadItems();
 
   },
 
@@ -98,48 +132,21 @@ var page = {
       console.log($(clickedPage));
   },
 
-  allItems: function(event) {
-    // event.preventDefault();
-  var ndAll = $('.not-done').children().clone();
-  var cpltdAll = $('.completed').children().clone();
 
-
-
-  $('.all').append(ndAll);
-  $('.all').append(cpltdAll);
-
-  console.log(ndAll);
-  console.log(cpltdAll);
-
-
+  allItems: function () {
+    $('.completed').show()
+    $('.not-done').show()
 },
 
 itemsLeft: function() {
   var leftArr = $('.not-done').find('li');
   var num = leftArr.length;
-  var leftNum = $('#left-link').prepend(num + " ");
+
+  var leftNum = $('#left-link').html( num + " items left");
+  return leftNum
 },
 
-/////setTimeout on this?//////////
-  checked: function(event) {
-    event.preventDefault();
-    var done = $(this).closest('li').html();
-//////how would you get this back with the <li>
-    var doner =  "<li>" + done + "</li>";
-    var noInput = $(doner).remove('input[type="checkbox"]');
-    $(doner).append('.completed')
-    $('line-item').addClass('completedFont')
-
-
-    page.loadItems();
-
-    console.log(done);
-    console.log(doner);
-    console.log(noInput);
-
-  },
-
-  loadTemplate: function (tmplName, data, $target){
+loadTemplate: function(tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTemplate(tmplName));
 
     $target.append(compiledTmpl(data));
@@ -149,4 +156,4 @@ itemsLeft: function() {
     return templates[name];
   },
 
-};//don't delete this it is for the Page
+};

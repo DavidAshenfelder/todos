@@ -20,7 +20,7 @@ var templates = {}
 
 templates.item = [
   "<li class='line-item' data-id= '<%= _id%>'>",
-    "<input type='checkbox'>",
+    "<div class='check'><span class='octicon octicon-check'></span> </div>",
     "<p><%=item%></p>",
     "<div class='delete-wrapper'>",
       "<button type='button' name='delete'>Delete</button>",

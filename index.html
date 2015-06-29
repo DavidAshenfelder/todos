@@ -7,18 +7,18 @@
   <link rel="stylesheet" href="main.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-  <section class="all-items" rel="all-items">
+  <!-- <section class="all-items" rel=".all-items">
 
   </section>
-  <secion class="active">
+  <secion class="active" rel=".active">
 
   </secion>
   <section class="completed-items" rel=".completed-itmes">
 
-  </section>
+  </section> -->
 
   <section class="list-wrapper">
-    <h1 class="title">todos</h1>
+    <h2 class="title">todos</h2>
     <div class="inner-list-wrapper">
       <div class="list">
         <div class="input-wrapper">
@@ -41,73 +41,27 @@
           </div>
         </div>
         <div class="item-wrapper">
-          <ul class="all">
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Make an Appointment
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
+          <div class="all">
+          </div>
+          <div class="not-done">
+            <h1>Active</h1>
+            <ul id="notDoneList">
+
+            </ul>
+          </div>
+          <div class="completed completedFont">
+            <h1>Completed</h1>
+          <ul id="completedList" class="completedFont">
+
           </ul>
-          <ul class="not-done">
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Make an Appointment
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Perform crud
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Understand GET POST PUT DELETE
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Begin $.ajax()
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
-          </ul>
-          <ul class="completed completedFont">
-            <li class="line-item">
-              <input type="checkbox" name="circle">
-              <p>
-                Make an Appointment
-              </p>
-              <div class="delete-wrapper">
-                <button type="button" name="delete">Delete</button>
-              </div>
-            </li>
-          </ul>
+        </div>
         </div>
         <div class="footer">
           <ul>
             <li id="left-link" class="footer-links">Items left</li>
-            <li class="footer-links"><a href="" rel=".all">All</a></li>
-            <li class="footer-links"><a href="" rel=".not-done">Active</a></li>
-            <li class="footer-links"><a href="" rel=".completed">Completed</a></li>
+            <li id="all" class="footer-links"><a href="" rel=".all">All</a></li>
+            <li id="not-done" class="footer-links"><a href="" rel=".not-done">Active</a></li>
+            <li id="completed" class="footer-links"><a href="" rel=".completed">Completed</a></li>
             <li id="right-link" class="footer-links"><a href="">Clear Completed</a></li>
           </ul>
         </div>
